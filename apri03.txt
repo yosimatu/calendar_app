@@ -1,0 +1,33 @@
+create table user_table(
+    user_ID smallint AUTO_INCREMENT PRIMARY KEY,
+    user_name nvarchar(20) NOT NULL, 
+    user_password char(8) NOT NULL
+);
+
+CREATE TABLE plan_type_table(
+	Plan_type_ID tinyint PRIMARY KEY,
+    Plan_type nvarchar(10) NOT NULL
+);
+
+create table plan_table(
+    user_ID smallint,
+    plan_date date,
+    plan_type_ID tinyint,
+    memo nvarchar(250) NOT NULL,
+    PRIMARY KEY(user_ID, plan_date, plan_type_ID), 
+    FOREIGN KEY(user_ID) REFERENCES user_table(user_ID),
+    FOREIGN KEY(plan_type_ID) REFERENCES plan_type_table(plan_type_ID)
+);
+
+INSERT INTO Plan_type_table(Plan_type_ID, Plan_type) VALUE(1, "学校");
+INSERT INTO Plan_type_table(Plan_type_ID, Plan_type) VALUE(2, "試験");
+INSERT INTO Plan_type_table(Plan_type_ID, Plan_type) VALUE(3, "課題");
+INSERT INTO Plan_type_table(Plan_type_ID, Plan_type) VALUE(4, "行事");
+INSERT INTO Plan_type_table(Plan_type_ID, Plan_type) VALUE(5, "就活");
+INSERT INTO Plan_type_table(Plan_type_ID, Plan_type) VALUE(6, "アルバイト");
+INSERT INTO Plan_type_table(Plan_type_ID, Plan_type) VALUE(7, "旅行");
+
+INSERT INTO User_table(User_name, User_password) VALUE("野比のび助", "aaaaaaaa");
+INSERT INTO User_table(User_name, User_password) VALUE("野比玉子", "bbbbbbbb");
+INSERT INTO User_table(User_name, User_password) VALUE("野比のび太", "cccccccc");
+INSERT INTO User_table(User_name, User_password) VALUE("ドラえもん", "dddddddd");
